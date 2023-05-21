@@ -1,6 +1,7 @@
 using BrizLand.DataContext;
 using BrizLand.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +25,11 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(opt =>
     .AddDefaultTokenProviders()
     .AddEntityFrameworkStores<BrizLandDbContext>();
 
+    builder.Services.AddDbContext<BrizLandDbContext>(opt =>
+    {
+        opt.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
+
+    });
 
 var app = builder.Build();
 

@@ -11,7 +11,7 @@ namespace BrizLand.DataContext
 
 
         }
-
+        public DbSet<Servis> services { get; set; }
 
     }
     

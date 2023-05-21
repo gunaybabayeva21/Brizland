@@ -1,0 +1,61 @@
+﻿
+@model List<Servis>
+
+@{
+    int count = 0;
+}
+
+<h1 class="h3 mb-2 text-gray-800">Service</h1>
+<p class="mb-4">
+    DataTables is a third party plugin that is used to generate the demo table below.
+    For more information about DataTables, please visit the <a target="_blank"
+                                                               href="https://datatables.net">official DataTables documentation</a>.
+</p>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+        <div>
+            <a class="btn btn-success py-2" asp-controller="Servis" asp-action="Index">Create</a>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>No:</th>
+                        <th>IconImage</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Setting</th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @foreach ( Servis item in Model)
+                    {
+                        <tr>
+                            <td>@(++count)</td>
+                            <td>></td>
+                            <td>@item.IconName</td>
+                            <td>@item.Title</td>
+                            <td>@item.Description</td>
+                            <td>
+                                <a asp-controller="Servis" asp-action="Detail" asp-route-id="@item.Id"><button class="btn btn-info">Detail</button></a>
+                                <a asp-controller="Servis" asp-action="Edit" asp-route-id="@item.Id"><button class="btn btn-info">Edit</button></a>
+                                <form method="post" asp-action="Delete" asp-route-id="@item.Id">
+                                    <button class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
